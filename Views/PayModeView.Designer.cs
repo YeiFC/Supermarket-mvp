@@ -1,4 +1,5 @@
-﻿namespace Supermarket_mvp.Views
+﻿
+namespace Supermarket_mvp.Views
 {
     partial class PayModeView
     {
@@ -327,7 +328,8 @@
         private Label label4;
         private TextBox TxtPayModeId;
         private Label label3;
-
-       
+        private EventHandler BtnSearch_Click;
+        private EventHandler label2_Click;
+        private EventHandler tabPagePayModeDetail_Click;
     }
 }
