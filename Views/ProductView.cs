@@ -12,15 +12,24 @@ namespace Supermarket_mvp.Views
 {
     public partial class ProductView : Form, IProductView
     {
+        private bool isEdit;
+        private bool isSuccessful;
+        private string message;
+
         public ProductView()
         {
             InitializeComponent();
-            AssociateAndRaiseViwEvents();
+            AssociateAndRaiseViewEvents();
+
+            tabControl1.TabPages.Remove(tabProductDetail);
+
+            BtnClose.Click += delegate { this.Close(); };
         }
 
-        private void AssociateAndRaiseViwEvents()
+        private void AssociateAndRaiseViewEvents()
         {
             BtnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+
             TxtSearch.KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
@@ -28,6 +37,7 @@ namespace Supermarket_mvp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
+
             BtnNew.Click += delegate
             {
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
@@ -35,7 +45,6 @@ namespace Supermarket_mvp.Views
                 tabControl1.TabPages.Remove(tabProductList);
                 tabControl1.TabPages.Add(tabProductDetail);
                 tabProductDetail.Text = "Add New Product";
-
             };
 
             BtnEdit.Click += delegate
@@ -44,16 +53,16 @@ namespace Supermarket_mvp.Views
 
                 tabControl1.TabPages.Remove(tabProductList);
                 tabControl1.TabPages.Add(tabProductDetail);
-                tabProductDetail.Text = "Edit new product";
-
+                tabProductDetail.Text = "Edit Product";
             };
 
             BtnDelete.Click += delegate
             {
                 var result = MessageBox.Show(
-                    "Are you sure you want to delete the selected Product",
+                    "Are you sure you want to delete the selected Product?",
                     "Warning",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
                 {
@@ -71,6 +80,7 @@ namespace Supermarket_mvp.Views
                     tabControl1.TabPages.Remove(tabProductDetail);
                     tabControl1.TabPages.Add(tabProductList);
                 }
+
                 MessageBox.Show(Message);
             };
 
@@ -78,21 +88,70 @@ namespace Supermarket_mvp.Views
             {
                 CancelEvent?.Invoke(this, EventArgs.Empty);
 
-                tabControl1.TabPages.Remove(tabProductList);
-                tabControl1.TabPages.Add(tabProductDetail);
+                tabControl1.TabPages.Remove(tabProductDetail);
+                tabControl1.TabPages.Add(tabProductList);
             };
         }
 
-        public string ProductId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string CategoryId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ProviderId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string StockQuantity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string SearchValue { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsEdit { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsSuccessful { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Message { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        string IProductView.ProductName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string ProductId
+        {
+            get { return TxtProductId.Text; }
+            set { TxtProductId.Text = value; }
+        }
+
+        public string ProductName
+        {
+            get { return TxtProductName.Text; }
+            set { TxtProductName.Text = value; }
+        }
+
+        public string CategoryId
+        {
+            get { return TxtProductCategory.Text; }
+            set { TxtProductCategory.SelectedValue = value; }
+        }
+
+        public string ProviderId
+        {
+            get { return TxtProductProvider.Text; }
+            set { TxtProductProvider.SelectedValue = value; }
+        }
+
+        public string Price
+        {
+            get { return TxtProductPrice.Text; }
+            set { TxtProductPrice.Text = value.ToString(); }
+        }
+
+        public string StockQuantity
+        {
+            get { return TxtProductStockQuantity.Text; }
+            set { TxtProductStockQuantity.Text = value.ToString(); }
+        }
+
+        public string SearchValue
+        {
+            get { return TxtSearch.Text; }
+            set { TxtSearch.Text = value; }
+        }
+
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            set { isEdit = value; }
+        }
+
+        public bool IsSuccessful
+        {
+            get { return isSuccessful; }
+            set { isSuccessful = value; }
+        }
+
+        public string Message
+        {
+            get { return message; }
+            set { message = value; }
+        }
 
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
@@ -105,54 +164,9 @@ namespace Supermarket_mvp.Views
         {
             DgProduct.DataSource = productList;
         }
-        public string Productid
-        {
-            get { return TxtProductId.Text; }
-            set { TxtProductId.Text = value; }
-        }
-        public string ProductName
-        {
-            get { return TxtProductName.Text; }
-            set { TxtProductName.Text = value; }
-        }
-        public string Category
-        {
-            get { return TxtProductCategory.Text; }
-            set { TxtProductCategory.Text = value; }
-        }
 
-        public string Provider
-        {
-            get { return TxtProductProvider.Text; }
-            set { TxtProductProvider.Text = value; }
-        }
+        private static ProductView instance;
 
-        public string price
-        {
-            get { return TxtProductPrice.Text; }
-            set { TxtProductPrice.Text = value; }
-        }
-
-        public string Stock
-        {
-            get { return TxtProductCategory.Text; }
-            set { TxtProductCategory.Text = value; }
-        }
-
-        public bool isSuccessful { get; private set; }
-        public static Form? parentContainer { get; private set; }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public static ProductView instance;
         public static ProductView GetInstance(Form parentContainer)
         {
             if (instance == null || instance.IsDisposed)
@@ -162,7 +176,6 @@ namespace Supermarket_mvp.Views
 
                 instance.FormBorderStyle = FormBorderStyle.None;
                 instance.Dock = DockStyle.Fill;
-
             }
             else
             {
@@ -172,12 +185,8 @@ namespace Supermarket_mvp.Views
                 }
                 instance.BringToFront();
             }
-            return instance;
-        }
 
-        public static implicit operator ProductView(PayModeView v)
-        {
-            throw new NotImplementedException();
+            return instance;
         }
     }
 }
