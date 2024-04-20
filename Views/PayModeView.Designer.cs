@@ -120,6 +120,7 @@ namespace Supermarket_mvp.Views
             // 
             // BtnClose
             // 
+            BtnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnClose.Image = Properties.Resources.cerrar;
             BtnClose.Location = new Point(587, 271);
             BtnClose.Name = "BtnClose";
@@ -129,6 +130,7 @@ namespace Supermarket_mvp.Views
             // 
             // BtnDelete
             // 
+            BtnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnDelete.Image = Properties.Resources.delete;
             BtnDelete.Location = new Point(587, 208);
             BtnDelete.Name = "BtnDelete";
@@ -138,6 +140,7 @@ namespace Supermarket_mvp.Views
             // 
             // BtnEdit
             // 
+            BtnEdit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnEdit.Image = Properties.Resources.edit;
             BtnEdit.Location = new Point(587, 145);
             BtnEdit.Name = "BtnEdit";
@@ -147,6 +150,7 @@ namespace Supermarket_mvp.Views
             // 
             // BtnNew
             // 
+            BtnNew.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnNew.Image = Properties.Resources._new;
             BtnNew.Location = new Point(587, 80);
             BtnNew.Name = "BtnNew";
@@ -158,6 +162,7 @@ namespace Supermarket_mvp.Views
             // 
             DgPayMode.AllowUserToAddRows = false;
             DgPayMode.AllowUserToDeleteRows = false;
+            DgPayMode.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DgPayMode.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgPayMode.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgPayMode.Location = new Point(40, 80);
@@ -168,6 +173,7 @@ namespace Supermarket_mvp.Views
             // 
             // BtnSearch
             // 
+            BtnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnSearch.Image = Properties.Resources.search_small;
             BtnSearch.Location = new Point(587, 28);
             BtnSearch.Name = "BtnSearch";
@@ -177,6 +183,7 @@ namespace Supermarket_mvp.Views
             // 
             // TxtSearch
             // 
+            TxtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             TxtSearch.Location = new Point(32, 37);
             TxtSearch.Name = "TxtSearch";
             TxtSearch.PlaceholderText = "Data to search";
