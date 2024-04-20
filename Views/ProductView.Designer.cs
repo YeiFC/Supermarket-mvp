@@ -93,7 +93,7 @@
             label1.Size = new Size(143, 33);
             label1.TabIndex = 0;
             label1.Text = "PRODUCTS";
-            label1.Click += label1_Click;
+           // label1.Click += label1_Click;
             // 
             // tabControl1
             // 
@@ -204,7 +204,7 @@
             label2.Size = new Size(87, 15);
             label2.TabIndex = 0;
             label2.Text = "Search Product";
-            label2.Click += label2_Click;
+            //label2.Click += label2_Click;
             // 
             // tabProductDetail
             // 
