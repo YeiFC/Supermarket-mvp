@@ -69,7 +69,7 @@ namespace Supermarket_mvp.Presenters
             product.ProductName = view.ProductName;
             product.CategoryId = Convert.ToInt32(view.CategoryId);
             product.ProviderId = Convert.ToInt32(view.ProviderId);
-            product.Price = Convert.ToInt32(view.Price);
+            product.Price = Convert.ToDecimal(view.Price);
             product.StockQuantity = Convert.ToInt32(view.StockQuantity);
 
             try
@@ -122,6 +122,7 @@ namespace Supermarket_mvp.Presenters
 
         private void DeleteSelectedProduct(object? sender, EventArgs e)
         {
+
             try
             {
                 var product = (ProductModel)productBindingSource.Current;

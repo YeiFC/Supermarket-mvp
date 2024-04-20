@@ -40,7 +40,7 @@ namespace Supermarket_mvp._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "DELETE FROM Product WHERE ProductID = @id";
+                command.CommandText = "DELETE FROM Product WHERE Product_Id = @id";
                 command.Parameters.Add("@id", SqlDbType.Int).Value = productId;
                 command.ExecuteNonQuery();
             }
