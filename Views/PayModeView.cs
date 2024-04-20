@@ -155,6 +155,10 @@ namespace Supermarket_mvp.Views
             return instance;
         }
 
+        public static implicit operator PayModeView(ProductView v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

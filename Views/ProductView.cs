@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Supermarket_mvp.Views
 {
-    public partial class ProductView : Form , IProductView
+    public partial class ProductView : Form, IProductView
     {
         public ProductView()
         {
@@ -28,7 +28,8 @@ namespace Supermarket_mvp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
-            BtnNew.Click += delegate {
+            BtnNew.Click += delegate
+            {
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
 
                 tabControl1.TabPages.Remove(tabProductList);
@@ -37,7 +38,8 @@ namespace Supermarket_mvp.Views
 
             };
 
-            BtnEdit.Click += delegate {
+            BtnEdit.Click += delegate
+            {
                 EditEvent?.Invoke(this, EventArgs.Empty);
 
                 tabControl1.TabPages.Remove(tabProductList);
@@ -46,7 +48,8 @@ namespace Supermarket_mvp.Views
 
             };
 
-            BtnDelete.Click += delegate {
+            BtnDelete.Click += delegate
+            {
                 var result = MessageBox.Show(
                     "Are you sure you want to delete the selected Product",
                     "Warning",
@@ -59,7 +62,8 @@ namespace Supermarket_mvp.Views
                 }
             };
 
-            BtnSave.Click += delegate {
+            BtnSave.Click += delegate
+            {
                 SaveEvent?.Invoke(this, EventArgs.Empty);
 
                 if (isSuccessful)
@@ -70,7 +74,8 @@ namespace Supermarket_mvp.Views
                 MessageBox.Show(Message);
             };
 
-            BtnCancel.Click += delegate {
+            BtnCancel.Click += delegate
+            {
                 CancelEvent?.Invoke(this, EventArgs.Empty);
 
                 tabControl1.TabPages.Remove(tabProductList);
@@ -135,6 +140,7 @@ namespace Supermarket_mvp.Views
         }
 
         public bool isSuccessful { get; private set; }
+        public static Form? parentContainer { get; private set; }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -144,6 +150,34 @@ namespace Supermarket_mvp.Views
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public static ProductView instance;
+        public static ProductView GetInstance(Form parentContainer)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new ProductView();
+                instance.MdiParent = parentContainer;
+
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+
+            }
+            else
+            {
+                if (instance.WindowState == FormWindowState.Minimized)
+                {
+                    instance.WindowState = FormWindowState.Normal;
+                }
+                instance.BringToFront();
+            }
+            return instance;
+        }
+
+        public static implicit operator ProductView(PayModeView v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
