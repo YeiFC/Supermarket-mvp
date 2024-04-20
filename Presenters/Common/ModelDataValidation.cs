@@ -55,6 +55,30 @@ namespace Supermarket_mvp.Presenters.Common
 
             return ValidationResult.Success;
         }
+
+
+    }
+
+    public class ProviderModelValidationAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var product = (ProductModel)validationContext.ObjectInstance;
+
+            if (product.CategoryId == 0)
+            {
+                return new ValidationResult("Category is required");
+            }
+
+            if (product.ProviderId == 0)
+            {
+                return new ValidationResult("Provider is required");
+            }
+
+            return ValidationResult.Success;
+        }
+
+
     }
 }
 

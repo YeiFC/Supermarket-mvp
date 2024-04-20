@@ -36,6 +36,16 @@ namespace Supermarket_mvp.Presenters
             IProductRepository repository = new ProductRepository(sqlConnectionString);
             new ProductPresenter(view, repository);
         }
+
+        private void ShowProvidersView(object? sender, EventArgs e)
+        {
+            IProvidersView view = ProvidersView.GetInstance((MainView)mainView);
+            IProvidersRepository repository = new ProvidersRepository(sqlConnectionString);
+            new ProvidersPresenter(view, repository);
+        }
     }
+    
+
+
 }   
        

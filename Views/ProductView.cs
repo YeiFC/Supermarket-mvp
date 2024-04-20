@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Supermarket_mvp.Presenters;
 
 namespace Supermarket_mvp.Views
 {
@@ -108,13 +109,13 @@ namespace Supermarket_mvp.Views
         public string CategoryId
         {
             get { return TxtProductCategory.Text; }
-            set { TxtProductCategory.SelectedValue = value; }
+          //  set => TxtProductCategory.SelectValue = value;
         }
 
         public string ProviderId
         {
             get { return TxtProductProvider.Text; }
-            set { TxtProductProvider.SelectedValue = value; }
+           //set { TxtProductProvider.SelectedValue = value; }
         }
 
         public string Price
@@ -152,6 +153,9 @@ namespace Supermarket_mvp.Views
             get { return message; }
             set { message = value; }
         }
+
+        string IProductView.CategoryId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        string IProductView.ProviderId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
