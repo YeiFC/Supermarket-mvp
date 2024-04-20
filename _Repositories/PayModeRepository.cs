@@ -110,7 +110,10 @@ namespace Supermarket_mvp._Repositories
                         var payModeModel = new PayModeModel();
                         payModeModel.Id = (int)reader["Pay_Mode_Id"];
                         payModeModel.Name = reader["Pay_Mode_Name"].ToString();
-                        payModeModel.Observation = reader["Pay_Model_Observation"].ToString();
+                        try
+                        {
+                            payModeModel.Observation = reader["Pay_Model_Observation"].ToString();
+                        }catch (Exception ex) { }
                         payModeList.Add(payModeModel);
                     }
                 }
