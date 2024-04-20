@@ -109,13 +109,13 @@ namespace Supermarket_mvp.Views
         public string CategoryId
         {
             get { return TxtProductCategory.Text; }
-          //  set => TxtProductCategory.SelectValue = value;
+            set { TxtProductCategory.Text = value.ToString(); }
         }
 
         public string ProviderId
         {
             get { return TxtProductProvider.Text; }
-           //set { TxtProductProvider.SelectedValue = value; }
+            set { TxtProductProvider.Text = value.ToString(); }
         }
 
         public string Price
@@ -154,9 +154,7 @@ namespace Supermarket_mvp.Views
             set { message = value; }
         }
 
-        string IProductView.CategoryId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        string IProductView.ProviderId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+      
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
         public event EventHandler EditEvent;

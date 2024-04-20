@@ -120,7 +120,7 @@ namespace Supermarket_mvp.Presenters
             view.IsEdit = false;
         }
 
-        private void DeleteSelectedProduct(object sender, EventArgs e)
+        private void DeleteSelectedProduct(object? sender, EventArgs e)
         {
             try
             {
