@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace Supermarket_mvp.Views
 {
     public partial class MainView : Form, IMainView
+
     {
         public MainView()
         {
@@ -18,6 +19,7 @@ namespace Supermarket_mvp.Views
             BtnPayMode.Click += delegate { ShowPayModeView?.Invoke(this, EventArgs.Empty); };
             BtnProduct.Click += delegate { ShowProductView?.Invoke(this, EventArgs.Empty); };
             BtnProviders.Click += delegate { ShowProviderView?.Invoke(this, EventArgs.Empty); };
+            BtnCategory.Click += delegate { ShowCategoryView?.Invoke(this, EventArgs.Empty); };
 
             BtnExit.Click += delegate { this.Close(); };
 
@@ -28,6 +30,6 @@ namespace Supermarket_mvp.Views
         public event EventHandler ShowProductView;
         public event EventHandler ShowCategoryView;
         public event EventHandler ShowProviderView;
-        public event EventHandler ShowCustomerView;
+       
     }
 }
